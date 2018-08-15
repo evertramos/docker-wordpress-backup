@@ -44,7 +44,11 @@ run_function() {
     # Call the specified function
     if [ -n "$(type -t "$1")" ] && [ "$(type -t "$1")" = function ]; then
         echo "${cyan}...running function \"${1}\" to:${reset}"
-        $1
+        if [ ! -z $2 ]; then
+            $1 $2
+        else
+            $1
+        fi
     else
         echo "${red}>>> -----------------------------------------------------${reset}"
         echo "${red}>>>${reset}"
@@ -89,17 +93,14 @@ run_function check_env_file
 # Backup Database
 run_function backup_database
 
+# Compress file (database)
+run_function compress_file $SCRIPT_PATH"/../backup/"$BACKUP_FILE
 
-exit 0
+# Backup wp-content
+run_function backup_wp_content
 
-# Current Date (ddmmyyy-hhmm)
-CURRENT_DATE=$(date '+%d%m%Y-%H%M')
-
-# Set the backup file name here
-BACKUP_FILE=$CONTAINER_DB_NAME"-"$CURRENT_DATE".sql"
-
-# Backup from container
-docker exec -i $CONTAINER_DB_NAME /usr/bin/mysqldump -u $MYSQL_USER --password=$MYSQL_PASSWORD $MYSQL_DATABASE > $SCRIPT_PATH"/../backup/"$BACKUP_FILE
+# Compress file (database)
+#run_function compress_file $SCRIPT_PATH"/../backup/"$BACKUP_FILE
 
 
 exit 0

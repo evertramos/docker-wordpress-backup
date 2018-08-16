@@ -14,8 +14,10 @@ symlink_env_file() {
 
     echo "Creating a symlink for the '.env' file in local folder."
 
+    cd $SCRIPT_PATH
+
     if [ ! -e .env ]; then
-        ln -s ./../compose/.env .
+        ln -s $ENV_FILE_LOCATION"/.env" .
     fi
 }
 

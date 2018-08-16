@@ -84,6 +84,13 @@ run_function() {
 #
 # ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
+# 
+# Setting '.env' file location for the docker-wordpress-letsnecrypt
+#
+# ---------------------------------------------------------------------
+ENV_FILE_LOCATION=./../compose
+
 # Symlink '.env' file to local folder
 run_function symlink_env_file
 

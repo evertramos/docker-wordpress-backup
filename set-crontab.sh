@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 CRONTAB_FILE=current_crontab
 CRONTAB_SCRIPT="$(dirname "$(readlink -f "$0")")""/run-backup.sh"
 CRONTAB_SIGNATURE="CRONTAB_RULE_DOCKER_WORDPRESS_BACKUP"
+
+
 #CRONTAB_RULE="00 03 * * 1-5 $CRONTAB_SCRIPT"
-CRONTAB_RULE="00 22 * * 1-5 "$CRONTAB_SCRIPT" # "$CRONTAB_SIGNATURE
+CRONTAB_RULE="00 21 * * 1-5 "$CRONTAB_SCRIPT" # "$CRONTAB_SIGNATURE
 
 # Write your current crontab to a file
 crontab -l > $CRONTAB_FILE

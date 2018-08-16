@@ -23,7 +23,12 @@ compress_file() {
             #return 1
         fi
 
+        if [ -e $1".gz" ]; then
+            mv $1".gz" $1".gz.old"
+        fi
+
         gzip -f $1
+
     fi
 }
 

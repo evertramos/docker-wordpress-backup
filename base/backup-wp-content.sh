@@ -20,15 +20,28 @@ backup_wp_content() {
     # Set the backup file name here
     BACKUP_FILE=$CONTAINER_WP_NAME"-"$CURRENT_DATE".tar"
 
-    # Check if backup file already exists
-    if [ ! -e $SCRIPT_PATH"/../backup/"$BACKUP_FILE ]; then
-        tar -cf $SCRIPT_PATH"/../backup/"$BACKUP_FILE $SCRIPT_PATH"/"$WP_CONTENT
+    # Set the backup full path
+    if [ ! -z $1 ]; then
+        BACKUP_FULL_PATH=$BACKUP_PATH"/"$1
     else
-        # rename olde file 
-        mv $SCRIPT_PATH"/../backup/"$BACKUP_FILE $SCRIPT_PATH"/../backup/"$BACKUP_FILE".old"
-
-        # create a new backup
-        tar -cf $SCRIPT_PATH"/../backup/"$BACKUP_FILE $SCRIPT_PATH"/"$WP_CONTENT
+        BACKUP_FULL_PATH=$BACKUP_PATH
     fi
+
+    # Check if directory exists
+    if [ ! -d $BACKUP_FULL_PATH ]; then
+        MESSAGE="The backup folder ($BACKUP_FULL_PATH) does not exists, please create it before continue"
+        return 1
+    fi
+
+    # Check if backup file already exists
+    if [ -e $BACKUP_FULL_PATH"/"$BACKUP_FILE ]; then
+        # rename olde file 
+        mv $BACKUP_FULL_PATH"/"$BACKUP_FILE $BACKUP_FULL_PATH"/"$BACKUP_FILE".old"
+    fi
+
+    # create a new backup
+    tar -cf $BACKUP_FULL_PATH"/"$BACKUP_FILE $SCRIPT_PATH"/"$WP_CONTENT
+
+    BACKUP_FILE=$BACKUP_FULL_PATH"/"$BACKUP_FILE
 }
 

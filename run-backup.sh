@@ -32,12 +32,6 @@ SCRIPT_PATH="$(dirname "$(readlink -f "$0")")"
 # Read all functions and files in base folder
 source $SCRIPT_PATH"/base/bootstrap.sh"
 
-# ----------------------------------------------------------------------
-# PLEASE SET ON THE FOLLOWING LINE THE BACKUP FOLDER
-# ----------------------------------------------------------------------
-# BACKUP_PATH=./../backup
-BACKUP_PATH=/backup
-
 # ---------------------------------------------------------------------
 #
 # Function to call other functions and output messages from the script
@@ -96,17 +90,34 @@ run_function symlink_env_file
 # Read '.env' file from compose folder
 run_function check_env_file
 
+# Check space left on backup path
+
+# ---------------------------------------------------------------------
+#
+# Backup Location Settings
+#
+# ---------------------------------------------------------------------
+# Please note that the basic configuration sets the backup on the folder outside
+# the compose folder for docker-wordpress-letsencrypt
+#
+# If you want to set your own location please update it accordingly
+# ----------------------------------------------------------------------
+#BACKUP_PATH=$SCRIPT_PATH"/"$BACKUP_PATH_NAME
+BACKUP_PATH=$BACKUP_PATH_NAME
+
 # Backup Database
-run_function backup_database $BACKUP_PATH
+# Set the first parameter as the subfolder name
+run_function backup_database "db"
 
 # Compress file (database)
-run_function compress_file $SCRIPT_PATH"/../backup/"$BACKUP_FILE
+run_function compress_file $BACKUP_FILE
 
 # Backup wp-content
-run_function backup_wp_content
+# Set the first parameter as the subfolder name
+run_function backup_wp_content "site"
 
 # Compress file (database)
-run_function compress_file $SCRIPT_PATH"/../backup/"$BACKUP_FILE
+run_function compress_file $BACKUP_FILE
 
 
 exit 0

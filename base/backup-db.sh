@@ -15,7 +15,7 @@ backup_database() {
     echo "Creating a backup for the Database."
     
     # Current Date (ddmmyyy-hh)
-    CURRENT_DATE=$(date '+%d%m%Y-%H')
+    CURRENT_DATE=$(date '+%d%m%Y')
 
     # Set the backup file name here
     BACKUP_FILE=$CONTAINER_DB_NAME"-"$CURRENT_DATE".sql"

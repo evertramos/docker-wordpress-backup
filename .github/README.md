@@ -84,7 +84,7 @@ That's all!
 
 ### Futher options
 
-#### If you want to set a cron job to run the backup please check the (crontab.guru)[https://crontab.guru/] and set your option in the `BACKUP_CRONTAB_RULE=...` variable then just run the `set-crontab.sh` script:
+#### If you want to set a cron job to run the backup please check the [crontab.guru](https://crontab.guru/) and set your option in the `BACKUP_CRONTAB_RULE=...` variable then just run the `set-crontab.sh` script:
 
 ```bash
 $ pwd

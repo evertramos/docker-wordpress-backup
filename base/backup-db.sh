@@ -15,15 +15,23 @@ backup_database() {
     echo "Creating a backup for the Database."
     
     # Current Date (ddmmyyy-hh)
-    CURRENT_DATE=$(date '+%d%m%Y')
+    CURRENT_DATE=$(date '+%Y%m%d')
 
     # Set the backup file name here
-    BACKUP_FILE=$CONTAINER_DB_NAME"-"$CURRENT_DATE".sql"
+    BACKUP_FILE=$CURRENT_DATE"-"$CONTAINER_DB_NAME".sql"
 
     # Set the backup full path
     if [ ! -z $1 ]; then
+        # Create folder if it does not exists
+        mkdir -p $BACKUP_PATH"/"$1
+
+        # Fullfill the Backup_Full_Path variable
         BACKUP_FULL_PATH=$BACKUP_PATH"/"$1
     else
+        # Create folder if it does not exists
+        mkdir -p $BACKUP_PATH"/"$1
+
+        # Fullfill the Backup_Full_Path variable
         BACKUP_FULL_PATH=$BACKUP_PATH
     fi
 

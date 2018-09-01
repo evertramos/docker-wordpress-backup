@@ -97,7 +97,13 @@ run_function symlink_env_file
 # Read '.env' file from compose folder
 run_function check_env_file
 
-# Check space left on backup path
+# Check if script is already running
+save_pid
+trap 'delete_pid' EXIT SIGQUIT SIGINT SIGSTOP SIGTERM ERR
+
+# Check Server Capacity
+#run_function check_ram_memory
+run_function check_disk_space
 
 # ---------------------------------------------------------------------
 #
@@ -107,9 +113,8 @@ run_function check_env_file
 # Please note that the basic configuration sets the backup on the folder outside
 # the compose folder for docker-wordpress-letsencrypt
 #
-# If you want to set your own location please update it accordingly
+# If you want to set your own location please update your .env file accordingly
 # ----------------------------------------------------------------------
-#BACKUP_PATH=$SCRIPT_PATH"/"$BACKUP_PATH_NAME
 BACKUP_PATH=$BACKUP_PATH_NAME
 
 # Backup Database

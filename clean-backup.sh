@@ -122,4 +122,4 @@ BACKUP_PATH=$BACKUP_PATH_NAME
 #run_function clean_backup
 run_function clean_backup_on_space_limit
 
-exit 0
+return 0

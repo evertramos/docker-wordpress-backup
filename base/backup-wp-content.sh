@@ -15,7 +15,12 @@ backup_wp_content() {
     echo "Creating a backup for the wp-content folder."
     
     # Current Date (ddmmyyy-hh)
-    CURRENT_DATE=$(date '+%Y%m%d')
+    if LONG_TERM_BACKUP; then
+        CURRENT_DATE=$(date '+%Y%m')
+        BACKUP_PATH=$BACKUP_PATH"/"$BACKUP_LONG_TERM_PATH_NAME
+    else
+        CURRENT_DATE=$(date '+%Y%m%d')
+    fi
 
     # Set the backup file name here
     BACKUP_FILE=$CURRENT_DATE"-"$CONTAINER_WP_NAME".tar"

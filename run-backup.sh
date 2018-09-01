@@ -103,7 +103,10 @@ trap 'delete_pid' EXIT SIGQUIT SIGINT SIGSTOP SIGTERM ERR
 
 # Check Server Capacity
 #run_function check_ram_memory
-run_function check_disk_space
+#run_function check_disk_space
+
+# Clean up old backup if needed
+source $SCRIPT_PATH/clean-backup.sh
 
 # ---------------------------------------------------------------------
 #
@@ -116,6 +119,15 @@ run_function check_disk_space
 # If you want to set your own location please update your .env file accordingly
 # ----------------------------------------------------------------------
 BACKUP_PATH=$BACKUP_PATH_NAME
+
+# ----------------------------------------------------------------------
+# Long Term Backup
+# ----------------------------------------------------------------------
+if [ ! -z "$BACKUP_LONG_TERM_PATH_NAME" ] && [ ! -z "$BACKUP_LONG_TERM_RETENTION" ] && [ ! -z $1 ]; then
+    LONG_TERM=true
+fi
+
+exit 0
 
 # Backup Database
 # Set the first parameter as the subfolder name

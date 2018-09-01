@@ -119,14 +119,22 @@ BACKUP_PATH=$BACKUP_PATH_NAME
 
 # Backup Database
 # Set the first parameter as the subfolder name
-run_function backup_database "db"
+if [ -z ${DB_BACKUP_PATH_NAME+X} ]; then
+    run_function backup_database
+else
+    run_function backup_database $DB_BACKUP_PATH_NAME
+fi
 
 # Compress file (database)
 run_function compress_file $BACKUP_FILE
 
 # Backup wp-content
 # Set the first parameter as the subfolder name
-run_function backup_wp_content "site"
+if [ -z ${WP_BACKUP_PATH_NAME+X} ]; then
+    run_function backup_wp_content
+else
+    run_function backup_wp_content $WP_BACKUP_PATH_NAME
+fi
 
 # Compress file (database)
 run_function compress_file $BACKUP_FILE

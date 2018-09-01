@@ -29,7 +29,7 @@ backup_wp_content() {
         BACKUP_FULL_PATH=$BACKUP_PATH"/"$1
     else
         # Create folder if it does not exists
-        mkdir -p $BACKUP_PATH"/"$1
+        mkdir -p $BACKUP_PATH
 
         # Fullfill the Backup_Full_Path variable
         BACKUP_FULL_PATH=$BACKUP_PATH

@@ -128,7 +128,7 @@ if [ ! -z "$BACKUP_LONG_TERM_PATH_NAME" ] && [ ! -z "$BACKUP_LONG_TERM_RETENTION
     BACKUP_PATH=$BACKUP_PATH"/"$BACKUP_LONG_TERM_PATH_NAME
     run_function clean_backup_long_term
 fi
-exit 0
+
 # Backup Database
 # Set the first parameter as the subfolder name
 if [ -z ${DB_BACKUP_PATH_NAME+X} ]; then

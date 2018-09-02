@@ -34,6 +34,10 @@ clean_backup_long_term () {
     # Check if folder was set for db and site
     # and go the backup folder
 
+    if [ ! -d "$BACKUP_PATH_NAME"/"$BACKUP_LONG_TERM_PATH_NAME" ]; then
+        return 0
+    fi
+
     # Database
     if [ ! -z ${DB_BACKUP_PATH_NAME+X} ]; then
         cd $BACKUP_PATH_NAME"/"$BACKUP_LONG_TERM_PATH_NAME"/"$DB_BACKUP_PATH_NAME

@@ -27,6 +27,41 @@ clean_backup_on_space_limit() {
     fi
 }
 
+clean_backup_long_term () {
+    
+    echo "Check File Limit for Long Term Backup."
+
+    # Check if folder was set for db and site
+    # and go the backup folder
+
+    # Database
+    if [ ! -z ${DB_BACKUP_PATH_NAME+X} ]; then
+        cd $BACKUP_PATH_NAME"/"$BACKUP_LONG_TERM_PATH_NAME"/"$DB_BACKUP_PATH_NAME
+        count_files_current_path
+        if [ $NUMBER_BACKUP_FILES -ge $BACKUP_LONG_TERM_RETENTION ]; then
+            delete_old_backup_files_up_to $BACKUP_LONG_TERM_RETENTION
+        fi
+    else
+        cd $BACKUP_PATH_NAME"/"$BACKUP_LONG_TERM_PATH_NAME
+        count_files_current_path
+        QTY_LONG_TERM_DB_SITE="$(($BACKUP_LONG_TERM_RETENTION*2))"
+        if [ $NUMBER_BACKUP_FILES -ge $QTY_LONG_TERM_DB_SITE ]; then
+            delete_old_backup_files_up_to $QTY_LONG_TERM_DB_SITE
+        fi
+    fi
+
+    # Site
+    if [ ! -z ${WP_BACKUP_PATH_NAME+X} ]; then
+        cd $BACKUP_PATH_NAME"/"$BACKUP_LONG_TERM_PATH_NAME"/"$WP_BACKUP_PATH_NAME
+        count_files_current_path
+        if [ $NUMBER_BACKUP_FILES -ge $BACKUP_LONG_TERM_RETENTION ]; then
+            delete_old_backup_files_up_to $BACKUP_LONG_TERM_RETENTION
+        fi
+    fi
+
+    cd - 
+}
+
 show_backup_device_info() {
 
     DEVICE=$(df -h "$BACKUP_PATH_NAME" | awk 'NR==2 { print $1 } ')
@@ -91,6 +126,17 @@ delete_old_backup_file () {
         rm $1
         echo "File deleted: "$1
     fi
+}
+
+count_files_current_path () {
+    NUMBER_BACKUP_FILES=$(ls -1 | wc -l)
+}
+
+delete_old_backup_files_up_to () {
+    echo 
+    echo "The backup file(s) below will be deleted:"
+    ls -t | sed -e "1,$1d"
+    ls -t | sed -e "1,$1d" | xargs -d '\n' rm
 }
 
 #clean_backup () {

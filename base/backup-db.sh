@@ -15,13 +15,12 @@ backup_database() {
     echo "Creating a backup for the Database."
     
     # Current Date (ddmmyyy-hh)
-    if LONG_TERM_BACKUP; then
+    if $LONG_TERM_BACKUP; then
         CURRENT_DATE=$(date '+%Y%m')
-        BACKUP_PATH=$BACKUP_PATH"/"$BACKUP_LONG_TERM_PATH_NAME
     else
         CURRENT_DATE=$(date '+%Y%m%d')
     fi
-
+    
     # Set the backup file name here
     BACKUP_FILE=$CURRENT_DATE"-"$CONTAINER_DB_NAME".sql"
 

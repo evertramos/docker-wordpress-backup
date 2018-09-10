@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+    #!/usr/bin/env bash
 
 # ----------------------------------------------------------------------
 #
@@ -123,7 +123,12 @@ BACKUP_PATH=$BACKUP_PATH_NAME
 # ----------------------------------------------------------------------
 # Long Term Backup
 # ----------------------------------------------------------------------
+LONG_TERM_BACKUP=false
 if [ ! -z "$BACKUP_LONG_TERM_PATH_NAME" ] && [ ! -z "$BACKUP_LONG_TERM_RETENTION" ] && [ ! -z $1 ]; then
+    echo
+    echo "Running a long term backup!"
+    echo
+
     LONG_TERM_BACKUP=true
     BACKUP_PATH=$BACKUP_PATH"/"$BACKUP_LONG_TERM_PATH_NAME
     run_function clean_backup_long_term

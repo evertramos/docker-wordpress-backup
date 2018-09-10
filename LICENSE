@@ -1,13 +1,24 @@
-MIT License
+E-RAMOS Personal Public License
+
+v0.1
 
 Copyright (c) 2018 Evert Ramos
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+THIS SOFTWARE IS FREE OF CHARGE FOR PERSONAL USAGE ONLY.
+FOR ENTERPRISE PURPOSE PLEASE CONTACT THE DEVELOPER FOR FURTHER INFORMATION.
+
+This software or any part should NOT be used in enterprise servers, including 
+dedicated server, virtual private server or alike. Unless the user runs it's 
+personal site/app.
+
+You MAY NOT sell, rent or use this software or any part for services that 
+incurs in charges of any values.
+
+You MAY NOT redistrbute, sublicense or anything that involves profit of any 
+amount.
+
+If you are willing to use this software as part of a profitable project for 
+company of any size, please contact evert.ramos@protonmail.com.
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.

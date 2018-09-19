@@ -1,0 +1,9 @@
+
+# Backup Container DB
+#source $SCRIPT_PATH/extra/backup-new-container-db.sh "CONTAINER_NAME" "DATABASE_NAME" "DATABASE_USER" "DATABASE_PASSWORD"
+
+# Example - backup database named db_main, from container app_db using root/root as user and password
+source $SCRIPT_PATH/extra/backup-new-container-db.sh "app_db" "db_main" "root" "root"
+
+
+## Don´t forget to rename this file to "extra-script.sh"

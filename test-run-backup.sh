@@ -131,30 +131,30 @@ if [ ! -z "$BACKUP_LONG_TERM_PATH_NAME" ] && [ ! -z "$BACKUP_LONG_TERM_RETENTION
 
     LONG_TERM_BACKUP=true
     BACKUP_PATH=$BACKUP_PATH"/"$BACKUP_LONG_TERM_PATH_NAME
-    run_function clean_backup_long_term
+#    run_function clean_backup_long_term
 fi
 
 # Backup Database
 # Set the first parameter as the subfolder name
-if [ -z ${DB_BACKUP_PATH_NAME+X} ]; then
-    run_function backup_database
-else
-    run_function backup_database $DB_BACKUP_PATH_NAME
-fi
+#if [ -z ${DB_BACKUP_PATH_NAME+X} ]; then
+#    run_function backup_database
+#else
+#    run_function backup_database $DB_BACKUP_PATH_NAME
+#fi
 
 # Compress file (database)
-run_function compress_file $BACKUP_FILE
+#run_function compress_file $BACKUP_FILE
 
 # Backup wp-content
 # Set the first parameter as the subfolder name
-if [ -z ${WP_BACKUP_PATH_NAME+X} ]; then
-    run_function backup_wp_content
-else
-    run_function backup_wp_content $WP_BACKUP_PATH_NAME
-fi
+#if [ -z ${WP_BACKUP_PATH_NAME+X} ]; then
+#    run_function backup_wp_content
+#else
+#    run_function backup_wp_content $WP_BACKUP_PATH_NAME
+#fi
 
 # Compress file (database)
-run_function compress_file $BACKUP_FILE
+#run_function compress_file $BACKUP_FILE
 
 # Run Extra Scripts if exists
 if [ -e $SCRIPT_PATH"/extra-script.sh" ]; then

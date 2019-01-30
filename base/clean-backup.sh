@@ -9,6 +9,12 @@ clean_backup_on_space_limit() {
 
     show_backup_device_info
 
+    if [ -z ${DISK_SPACE_LIMIT_CLEAN+X} ]; then
+        MESSAGE="You need to specify the free disk space limite in your .env file (DISK_SPACE_LIMIT_CLEAN)"
+        return 1
+    fi
+
+
     if [ $AVAILABLE_DISK_SPACE -gt $DISK_SPACE_LIMIT_CLEAN ]; then
         NEED_BACKUP=false
         echo

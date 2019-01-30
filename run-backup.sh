@@ -98,7 +98,7 @@ run_function symlink_env_file
 run_function check_env_file
 
 # Check if script is already running
-save_pid
+run_function save_pid
 trap 'delete_pid' EXIT SIGQUIT SIGINT SIGSTOP SIGTERM ERR
 
 # Check Server Capacity

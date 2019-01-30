@@ -1,3 +1,7 @@
+---
+# Project under development! Caution when using this repo... please read this README all the way before using it.
+---
+
 # Docker Wordpress Backup
 
 This script is meant to automatically backup your wordpress site and database.
@@ -48,9 +52,9 @@ BACKUP_PATH_NAME=./../backup
 BACKUP_CRONTAB_RULE="00 04 * * 1-5"
 ```
 
-If you use our [Docker Wordpress LetsEncrypt](https://github.com/evertramos/docker-wordpress-letsencrypt), make sure you update your .env file with these lines, as of:
+If you use our [Docker Wordpress LetsEncrypt](https://github.com/evertramos/docker-wordpress-letsencrypt), **make sure** you update your .env file with these lines, as of:
 
-[.env.sample](https://github.com/evertramos/docker-wordpress-letsencrypt/blob/003ee68ad67ab78441b669d859a46dce6ada3d6b/.env.sample#L54)
+[.env.sample](https://github.com/evertramos/docker-wordpress-letsencrypt/blob/master/.env.sample#L53)
 
 > In our example above we will use the **backup** folder to keep the backup, but we recommend using another disk attached to your server which would be mounted in another location. Just set up here where is mounted, example: */backup*
 

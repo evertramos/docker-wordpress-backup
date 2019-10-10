@@ -102,6 +102,6 @@ save_pid
 trap 'delete_pid' EXIT SIGQUIT SIGINT SIGSTOP SIGTERM ERR
 
 # Set crontab rules
-run_function set_backup_crontab_rule
+run_function set_backup_crontab_rule ${CONTAINER_WP_NAME}
 
 exit 0

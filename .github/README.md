@@ -1,5 +1,9 @@
 ---
-# Project under development! Caution when using this repo... please read this README all the way before using it.
+
+# This project was merged to [Server Automation](https://github.com/evertramos/server-automation) with many other features: 
+
+## https://github.com/evertramos/server-automation
+
 ---
 
 # Docker Wordpress Backup
